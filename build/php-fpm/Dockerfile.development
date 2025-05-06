@@ -1,0 +1,29 @@
+FROM php:8.4.6-fpm
+
+RUN rm /usr/local/etc/php/php.ini-production && \
+    mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
+COPY php-fpm.conf /usr/local/etc/php-fpm.conf
+COPY site.conf /usr/local/etc/php-fpm.d/www.conf
+
+WORKDIR /var/www/project-name
+
+# TODO: estudar opcache
+RUN apt-get update && apt install -y \
+    unzip \
+    libzip-dev && \
+    docker-php-ext-install \
+    pdo_mysql \
+    mbstring \
+    zip \
+    ds \
+    curl \
+    xdebug \
+    opcache && \
+    docker-php-ext-enable pdo_mysql mbstring zip ds curl opcache
+
+COPY --from=composer:2.2.6 /usr/bin/composer /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer install --verbose
+
+# NOTE: nginx image already exposes port 80

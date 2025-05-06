@@ -1,0 +1,5 @@
+FROM php:8.4.6-fpm
+
+COPY --from=composer:2.2.6 /usr/bin/composer /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer install --verbose

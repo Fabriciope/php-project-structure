@@ -2,17 +2,31 @@ services:
   server:
     container_name: nginx_server
     image: nginx:1.28.0
+    restart: always
     volumes:
-      - build/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - build/nginx/site.conf:/etc/nginx/conf.d/default.conf
+      - ./build/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./build/nginx/site.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - project-name
     expose:
       - 8080:80
     depends_on:
-        php-fpm
-    php-fpm:
-      build:
-        context: build/php-fpm
-        dockerfile: Dockerfile
+      - php-fpm
+  php-fpm:
+    container_name: php-fpm_server
+    build:
+      context: build/php-fpm
+      dockerfile: Dockerfile.development
+    restart: always
     volumes:
-      - build/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
-      - build/php-fpm/php.ini-production:/usr/local/etc/php/php.ini-production
+      - ./build/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./build/php-fpm/php.ini-production:/usr/local/etc/php/php.ini-production
+      - ./../..:/var/www/project-name
+    networks:
+      - project-name
+  
+  # TODO: configure mysql and redis
+
+networks:
+  project-name:
+    driver: bridge
