@@ -21,7 +21,7 @@ services:
     volumes:
       - ./build/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - ./build/php-fpm/php.ini-production:/usr/local/etc/php/php.ini-production
-      - ./../..:/var/www/project-name
+      - .:/var/www/project-name
     networks:
       - project-name
   
