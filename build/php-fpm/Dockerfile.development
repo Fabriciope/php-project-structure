@@ -1,5 +1,7 @@
 FROM php:8.4.6-fpm
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN rm /usr/local/etc/php/php.ini-production && \
     mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
@@ -8,7 +10,7 @@ COPY site.conf /usr/local/etc/php-fpm.d/www.conf
 
 WORKDIR /var/www/project-name
 
-COPY ./../.. .
+COPY ./../../. .
 
 # TODO: estudar opcache
 # WARNING: mbstring package requires oniguruma package
