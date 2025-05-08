@@ -8,7 +8,6 @@ services:
       - ./build/nginx/site.conf:/etc/nginx/conf.d/default.conf
       - ./logs/nginx/access.log:/var/log/nginx/access.log
       - ./logs/nginx/error.log:/var/log/nginx/error.log
-      - ./resources:/var/project-name/resources
       - .:/var/www/project-name
     networks:
       - project-name
@@ -24,10 +23,10 @@ services:
       dockerfile: Dockerfile.development
     restart: always
     volumes:
-      - ./logs/php-fpm/php-fpm.log:/usr/local/var/log/php-fpm.log
       - .:/var/www/project-name
     networks:
       - project-name
+
   
   # TODO: configure mysql and redis
 
