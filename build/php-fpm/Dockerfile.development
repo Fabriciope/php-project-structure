@@ -2,11 +2,11 @@ FROM php:8.4.6-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN rm /usr/local/etc/php/php.ini-production && \
-    mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+RUN rm /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini-development
 
 COPY php-fpm.conf /usr/local/etc/php-fpm.conf
 COPY site.conf /usr/local/etc/php-fpm.d/www.conf
+COPY php.ini-development /usr/local/etc/php/php.ini
 
 WORKDIR /var/www/project-name
 
