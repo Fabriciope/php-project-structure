@@ -1,6 +1,6 @@
 services:
-  server:
-    container_name: nginx_server
+  web_server:
+    container_name: web-server 
     image: nginx:1.28.0
     restart: always
     volumes:
@@ -12,12 +12,12 @@ services:
     networks:
       - project-name
     ports:
-      - 8888:80
+      - 8080:80
     depends_on:
       - php-fpm
   php-fpm:
     # TODO: fazer calculo de works e memoria do servidor
-    container_name: php-fpm_server
+    container_name: php-fpm
     build:
       context: build/php-fpm
       dockerfile: Dockerfile.development

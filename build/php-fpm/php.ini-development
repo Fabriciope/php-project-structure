@@ -1,5 +1,3 @@
-; TODO: otimizar para producao
-
 [PHP]
 
 ;;;;;;;;;;;;;;;;;;;
@@ -591,6 +589,7 @@ report_memleaks = On
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
 ;error_log = syslog
+; # NOTE: added
 error_log = /var/www/project-name/logs/php-fpm/www.app.log
 
 ; The syslog ident is a string which is prepended to every message logged

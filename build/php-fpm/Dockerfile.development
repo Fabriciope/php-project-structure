@@ -12,17 +12,11 @@ WORKDIR /var/www/project-name
 
 COPY ./../../. .
 
-# TODO: estudar opcache
-# WARNING: mbstring package requires oniguruma package
-# WARNING: zip package requires libzip package
-# WARNING: curl package requires libcurl package
-RUN apt-get update && apt install -y libzip-dev unzip && \
+RUN apt-get update && apt install -y libzip-dev unzip libcurl4-openssl-dev libonig-dev && \
     pecl install ds xdebug && \
-    docker-php-ext-install pdo_mysql zip opcache && \
-    docker-php-ext-enable pdo_mysql zip opcache ds xdebug && \
+    docker-php-ext-install pdo_mysql zip opcache curl mbstring && \
+    docker-php-ext-enable pdo_mysql zip opcache curl mbstring ds xdebug && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2.2.6 /usr/bin/composer /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
-
-# NOTE: nginx image already exposes port 80
