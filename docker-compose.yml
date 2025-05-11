@@ -16,7 +16,6 @@ services:
     depends_on:
       - php-fpm
   php-fpm:
-    # TODO: fazer calculo de works e memoria do servidor
     container_name: php-fpm
     build:
       context: build/php-fpm
@@ -27,7 +26,6 @@ services:
     networks:
       - project-name
 
-  
   # TODO: configure mysql and redis
 
 networks:
