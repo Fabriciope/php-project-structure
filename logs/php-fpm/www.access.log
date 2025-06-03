@@ -1,0 +1,4 @@
+172.18.0.3 -  03/Jun/2025:17:25:04 +0000 "GET /index.php"  200  /var/www/project-name/public/index.php  41.746 milliseconds  2048 kilobytes  CPU: 47.91%
+172.18.0.3 -  03/Jun/2025:17:25:05 +0000 "GET /index.php"  200  /var/www/project-name/public/index.php  3.664 milliseconds  2048 kilobytes  CPU: 0.00%
+172.18.0.2 -  03/Jun/2025:17:57:00 +0000 "GET /index.php"  200  /var/www/project-name/public/index.php  19.431 milliseconds  2048 kilobytes  CPU: 51.46%
+172.18.0.3 -  03/Jun/2025:18:08:40 +0000 "GET /index.php"  200  /var/www/project-name/public/index.php  15.236 milliseconds  2048 kilobytes  CPU: 65.63%

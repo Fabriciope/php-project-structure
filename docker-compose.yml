@@ -1,0 +1,33 @@
+services:
+  web-server:
+    container_name: web-server
+    image: nginx:1.28.0
+    restart: always
+    volumes:
+      - ./build/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./build/nginx/site.conf:/etc/nginx/conf.d/default.conf
+      - ./logs/nginx/access.log:/var/log/nginx/access.log
+      - ./logs/nginx/error.log:/var/log/nginx/error.log
+      - .:/var/www/project-name
+    networks:
+      - project-name
+    ports:
+      - 8000:80
+    depends_on:
+      - php-fpm
+  php-fpm:
+    # TODO: estudar healthcheck e rodar tests antes
+    container_name: php-fpm
+    build:
+      context: build/php-fpm
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      # NOTE: volume overrides composer install command
+      - .:/var/www/project-name
+    networks:
+      - project-name
+
+networks:
+  project-name:
+    driver: bridge
