@@ -1,0 +1,16 @@
+{
+  "name": "fabriciope/api-tag",
+  "description": "a base structure for use php via cli",
+  "authors": [
+    {
+      "name": "Fabrício Pereira Alves",
+      "email": "fabricioalvespa@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.4.6"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^7.1"
+  }
+}

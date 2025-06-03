@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && rm /usr/local/etc/php/php.ini-development
 
-WORKDIR /var/www/project-name
+WORKDIR /app
 
 COPY ./../../. .
 
@@ -17,4 +17,4 @@ RUN apt-get update && apt install -y libzip-dev unzip libcurl4-openssl-dev libon
 COPY --from=composer:2.2.6 /usr/bin/composer /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-CMD ["/bin/bash"]
+CMD ["/bin/bash", "-c", "composer install --verbose && /bin/bash"]

@@ -3,11 +3,11 @@
 ### Run
 
  ```bash
-docker build . -t project-name
+docker build . -t {{project-name}}
  ```
  and
  ```bash
-docker run -it --name {{project-name}} project-name:latest 
+docker run -it --name {{project-name}} -v .:/app project-name:latest
  ```
 
 ## License
