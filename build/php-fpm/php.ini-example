@@ -589,8 +589,6 @@ report_memleaks = On
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
 ;error_log = syslog
-; # NOTE: added
-error_log = /var/www/project-name/logs/php-fpm/www.app.log
 
 ; The syslog ident is a string which is prepended to every message logged
 ; to syslog. Only used when error_log is set to syslog.
@@ -1848,11 +1846,3 @@ ldap.max_links = -1
 
 ; List of headers files to preload, wildcard patterns allowed.
 ;ffi.preload=
-
-[xdebug]
-xdebug.mode=develop
-xdebug.output_dir=/var/www/project-name/logs/php-fpm/www.app.xdebug_output
-xdebug.show_local_vars=1
-xdebug.collect_globals=1
-xdebug.collect_params=1
-xdebug.collect_return=1

@@ -2,11 +2,11 @@ FROM php:8.4.6-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN rm /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini-development
+RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && rm /usr/local/etc/php/php.ini-production
 
 COPY php-fpm.conf /usr/local/etc/php-fpm.conf
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
-COPY php.ini /usr/local/etc/php/php.ini
+COPY 99-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
 
 WORKDIR /var/www/project-name
 
