@@ -2,5 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-dump('composer working');
-phpinfo();
+use Src\Config;
+
+Config::show();
