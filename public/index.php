@@ -2,4 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-phpinfo();
+use Src\Config;
+
+Config::show();
