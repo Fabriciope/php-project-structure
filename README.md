@@ -1,8 +1,15 @@
- Estrutura base para ambientes php com docker. Onde cada ambiente está em uma branch separada.
+ Estrutura base para um ambiente php via cli com docker.
 
- ### Ambientes
-  - php-fpm_with_nginx
-  - php-cli
+### Run
+
+ ```bash
+docker build . -t {{project-name}}
+ ```
+ and
+ ```bash
+docker run -it --name {{project-name}} -v .:/app project-name:latest
+ ```
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
