@@ -1,0 +1,6 @@
+172.19.0.3 -  03/Jul/2025:19:51:16 +0000 "GET /index.php"  200  /var/www/public/index.php  2.169 milliseconds  2048 kilobytes  CPU: 0.00%
+172.19.0.3 -  03/Jul/2025:19:51:22 +0000 "GET /test.php"  404  -  0.584 milliseconds  2048 kilobytes  CPU: 0.00%
+172.19.0.3 -  03/Jul/2025:19:51:27 +0000 "GET /index.php"  200  /var/www/public/index.php  1.388 milliseconds  2048 kilobytes  CPU: 0.00%
+172.19.0.3 -  03/Jul/2025:19:51:35 +0000 "GET /vendor/autoload.php"  404  -  0.126 milliseconds  2048 kilobytes  CPU: 0.00%
+172.19.0.3 -  03/Jul/2025:19:51:37 +0000 "GET /index.php"  200  /var/www/public/index.php  2.672 milliseconds  2048 kilobytes  CPU: 0.00%
+172.19.0.3 -  03/Jul/2025:19:51:40 +0000 "GET /index.php"  200  /var/www/public/index.php  2.131 milliseconds  2048 kilobytes  CPU: 0.00%
