@@ -2,11 +2,11 @@ services:
   web-server:
     container_name: web-server_dev
     build:
-      context: .
-      dockerfile: build.dev/nginx/Dockerfile
+      context: ./../..
+      dockerfile: docker/development/nginx/Dockerfile
     restart: always
     volumes:
-      - .:/var/www
+      - ./../..:/var/www
     networks:
       - project-name-network
     ports:
@@ -15,15 +15,15 @@ services:
       - php-fpm
 
   php-fpm:
-    # TODO: estudar healthcheck e rodar tests antes
+    # TODO: estudar healthcheck e rodar tests
     container_name: php-fpm_dev
     build:
-      context: .
-      dockerfile: build.dev/php-fpm/Dockerfile
+      context: ./../..
+      dockerfile: docker/development/php-fpm/Dockerfile
     user: 1000:1000
     restart: always
     volumes:
-      - .:/var/www
+      - ./../..:/var/www
     networks:
       - project-name-network
 
