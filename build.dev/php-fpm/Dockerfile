@@ -4,8 +4,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && rm /usr/local/etc/php/php.ini-production
 
-COPY 99-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
-COPY php-fpm-overrides.conf /usr/local/etc/php-fpm.d/php-fpm-overrides.conf
+COPY build.dev/php-fpm/99-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
+COPY build.dev/php-fpm/php-fpm-overrides.conf /usr/local/etc/php-fpm.d/php-fpm-overrides.conf
 
 RUN apt-get update && apt install -y \
         libzip-dev \
@@ -36,6 +36,6 @@ COPY --from=composer:2.8.9 /usr/bin/composer /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 WORKDIR /var/www
-COPY ./../../. .
+COPY . .
 
 CMD ["/bin/bash", "-c", "composer install --verbose && php-fpm"]
