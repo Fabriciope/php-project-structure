@@ -1,0 +1,32 @@
+services:
+  web-server:
+    container_name: web-server_prod
+    build:
+      context: .
+      dockerfile: build.prod/nginx/Dockerfile
+    restart: on-failure
+    volumes:
+      - .:/var/www
+    networks:
+      - project-name-network
+    ports:
+      - 80:80
+    depends_on:
+      - php-fpm
+
+  php-fpm:
+    # TODO: estudar healthcheck e rodar tests antes
+    container_name: php-fpm_prod
+    build:
+      context: .
+      dockerfile: build.prod/php-fpm/Dockerfile
+    user: 1000:1000
+    restart: on-failure
+    volumes:
+      - .:/var/www
+    networks:
+      - project-name-network
+
+networks:
+  project-name-network:
+    driver: bridge

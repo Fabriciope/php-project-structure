@@ -1,6 +1,6 @@
 services:
   web-server:
-    container_name: web-server
+    container_name: web-server_dev
     build:
       context: .
       dockerfile: build.dev/nginx/Dockerfile
@@ -16,12 +16,11 @@ services:
 
   php-fpm:
     # TODO: estudar healthcheck e rodar tests antes
-    container_name: php-fpm
+    container_name: php-fpm_dev
     build:
       context: .
       dockerfile: build.dev/php-fpm/Dockerfile
     user: 1000:1000
-    # TODO: usar opcao somente no docker-compose.yml de desenvolvimento
     restart: always
     volumes:
       - .:/var/www
