@@ -8,6 +8,7 @@ COPY composer.lock composer.lock
 # TODO: estudar --no-scripts
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
 
+
 # TODO: usar alpine
 FROM php:8.4.6-fpm
 
@@ -47,4 +48,6 @@ COPY . .
 
 COPY --from=composer /app/vendor vendor
 
-CMD ["/bin/bash", "-c", "php-fpm"]
+RUN chown -R www-data:www-data /var/www
+
+CMD ["php-fpm"]

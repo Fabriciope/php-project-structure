@@ -2,3 +2,5 @@
 .gitignore
 vendor/
 # TODO: se estiver usando o ambiente de desenvolvimente adicione o diretório docker/production/ aqui, e vice versa
+#docker/development/
+#docker/production/
