@@ -3,9 +3,10 @@ Estrutura nginx com php-fpm utilizando docker para projetos web php.
 
 Primeiro de tudo clone o projeto e troque para a branch correta.
 ```bash
-  git clone https://github.com/Fabriciope/php-project-structure.git <project-name>
-  git checkout php-fpm_with_nginx
-  cd <project-name>
+  git clone https://github.com/Fabriciope/php-project-structure.git <project-name> && \
+  cd <project-name> && \
+  git checkout php-fpm_with_nginx && \
+  rm -r .git
 ```
 <br>
 
@@ -13,6 +14,7 @@ Primeiro de tudo clone o projeto e troque para a branch correta.
 
 ### Mudar nome do projeto
 Após clonar o repositório faça uma pesquisa geral nos arquivos pela ocorrência do texto `project-name` e troque pelo nome que deseja do seu respectivo projeto.
+<!-- TODO: adicionar uma tabela listando quais linhas em quais arquivos essa alteração deve ser feito ( com descrição) -->
 
 ### ⚙️ Configurações
 Há duas pastas dentro da diretório docker (development e production) que são utilizadas para configurar os ambientes de desenvolvimento e produção respectivamente. 
@@ -41,7 +43,7 @@ Para escolher o ambiente que vai ser usado ao subir os serviços basta alterar o
 
 Agora acesse o projeto localmente em seu navegador via url http://127.0.0.1:80/
 
-> 💡 **Obs:** quando "derrubar" os serviços, ao rodar `docker compose down`, não se esqueça de usar a flag `--file` ou `-f` para especificar o `docker-compose.yml` que foi utilizado para subir os serviços.
+> ⚠️ **Obs:** quando "derrubar" os serviços, ao rodar o comando `docker compose down`, não se esqueça de usar a flag `--file` ou `-f` para especificar o `docker-compose.yml` que foi utilizado para subir os serviços.
 
 <br><br>
 
