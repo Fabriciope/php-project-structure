@@ -6,7 +6,7 @@ Primeiro de tudo clone o projeto e troque para a branch correta.
   git clone https://github.com/Fabriciope/php-project-structure.git <project-name> && \
   cd <project-name> && \
   git checkout php-fpm_with_nginx && \
-  rm -r .git
+  rm -rf .git
 ```
 <br>
 
