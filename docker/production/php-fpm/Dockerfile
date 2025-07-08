@@ -1,3 +1,13 @@
+FROM composer:2.8.9 AS composer
+
+WORKDIR /app
+
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+
+# TODO: estudar --no-scripts
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
+
 # TODO: usar alpine
 FROM php:8.4.6-fpm
 
@@ -32,13 +42,9 @@ RUN apt-get update && apt install -y \
         zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-# TODO: usar multi-stage build para copiar a vendor
-# TODO: colocar vendor no build/php-fpm/.dockerignore o vendor (./../../vendor/) e testar
-# TODO: colocar build.dev no .docker.gitignore
-COPY --from=composer:2.2.6 /usr/bin/composer /usr/local/bin/composer
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
 WORKDIR /var/www
 COPY . .
 
-CMD ["/bin/bash", "-c", "composer install --verbose && php-fpm"]
+COPY --from=composer /app/vendor vendor
+
+CMD ["/bin/bash", "-c", "php-fpm"]

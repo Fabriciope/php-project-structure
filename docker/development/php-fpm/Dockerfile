@@ -2,6 +2,7 @@ FROM php:8.4.6-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# TODO: usar PHP_INI_DIR environment variable (tb em production)
 RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && rm /usr/local/etc/php/php.ini-production
 
 COPY docker/development/php-fpm/99-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
@@ -31,7 +32,6 @@ RUN apt-get update && apt install -y \
         zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-# TODO: colocar build.prod no .docker.gitignore
 COPY --from=composer:2.8.9 /usr/bin/composer /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 

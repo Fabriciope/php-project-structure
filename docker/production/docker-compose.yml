@@ -5,8 +5,8 @@ services:
       context: ./../..
       dockerfile: docker/production/nginx/Dockerfile
     restart: on-failure
-    volumes:
-      - ./../..:/var/www
+    # volumes:
+    #   - ./../..:/var/www
     networks:
       - project-name-network
     ports:
@@ -20,10 +20,10 @@ services:
     build:
       context: ./../..
       dockerfile: docker/production/php-fpm/Dockerfile
-    user: 1000:1000
+    # user: 1000:1000
     restart: on-failure
-    volumes:
-      - ./../..:/var/www
+    # volumes:
+    #   - ./../..:/var/www
     networks:
       - project-name-network
 
