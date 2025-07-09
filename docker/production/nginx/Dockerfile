@@ -6,4 +6,4 @@ COPY . /var/www
 
 WORKDIR /var/www/public
 
-RUN chown -R nginx:nginx /var/www/public && chown -R nginx:nginx /var/www/logs/nginx
+RUN chown -R nginx:nginx /var/www/public && chown -R nginx:nginx /var/www/logs

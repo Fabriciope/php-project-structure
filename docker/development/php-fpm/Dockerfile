@@ -2,23 +2,21 @@ FROM php:8.4.6-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# TODO: usar PHP_INI_DIR environment variable (tb em production)
-RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && rm /usr/local/etc/php/php.ini-production
+RUN mv "${PHP_INI_DIR}/php.ini-development" "${PHP_INI_DIR}/php.ini" && rm "${PHP_INI_DIR}/php.ini-production"
 
 COPY docker/development/php-fpm/99-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
 COPY docker/development/php-fpm/php-fpm-overrides.conf /usr/local/etc/php-fpm.d/php-fpm-overrides.conf
 
 RUN apt-get update && apt install -y \
+        zip \
+        unzip \
         libzip-dev \
-        libpng-dev \
         libonig-dev \
-        libxml2-dev \
         libcurl4-openssl-dev \
+        # libxml2-dev \
         # libpng-dev \
         # libjpeg-dev \
         # libfreetype6-dev \
-        zip \
-        unzip \
     && pecl install \
         xdebug \
     && docker-php-ext-enable \
@@ -27,8 +25,8 @@ RUN apt-get update && apt install -y \
     #     --with-freetype \
     #     --with-jpeg \
     && docker-php-ext-install \
-        pdo \
-        pdo_mysql \
+        # pdo \
+        # pdo_mysql \
         zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
@@ -38,4 +36,4 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 WORKDIR /var/www
 COPY . .
 
-CMD ["/bin/bash", "-c", "composer install --verbose && php-fpm"]
+CMD ["/bin/bash", "-c", "composer install --prefer-dist --no-interaction && php-fpm"]
