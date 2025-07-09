@@ -24,7 +24,7 @@ Há duas pastas dentro da diretório docker (development e production) que são 
 <br>
 
 ## 🧾 Logs
-Rodar código abaixo para dar as permissões necessárias para que os logs funcionem corretamente.
+ Em ambiente de desenvolvimento rodar código abaixo para dar as permissões necessárias para que os logs funcionem corretamente.
 ```bash
   chmod 666 logs/nginx/* && \
   chmod 666 logs/php-fpm/*
