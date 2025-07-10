@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Verifica se ao menos um argumento foi passado
+if [ -z "$1" ]; then
+  echo "Uso: ./build <ambiente> [comandos do docker compose...]"
+  exit 1
+fi
+
+# Captura o primeiro argumento como ambiente
+AMBIENTE=$1
+shift # Remove o primeiro argumento ($1) da lista, deixando apenas os argumentos do docker-compose
+
+# Monta o caminho do docker-compose.yml com base no ambiente
+COMPOSE_FILE="docker/$AMBIENTE/docker-compose.yml"
+
+# Verifica se o arquivo existe
+if [ ! -f "$COMPOSE_FILE" ]; then
+  echo "Arquivo $COMPOSE_FILE não encontrado!"
+  exit 2
+fi
+
+# Executa o docker compose com o arquivo apropriado e os argumentos restantes
+docker compose --file "$COMPOSE_FILE" --env-file .env "$@"
