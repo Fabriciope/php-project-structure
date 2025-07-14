@@ -24,7 +24,7 @@ Há duas pastas dentro da diretório docker (development e production) que são 
 <br>
 
 ## 🧾 Logs
- Em ambiente de desenvolvimento rodar código abaixo para dar as permissões necessárias para que os logs funcionem corretamente.
+ Em ambiente de desenvolvimento rodar o código abaixo para dar as permissões necessárias para que os logs funcionem corretamente.
 ```bash
   chmod 666 logs/nginx/* && \
   chmod 666 logs/php-fpm/*
@@ -34,7 +34,7 @@ Há duas pastas dentro da diretório docker (development e production) que são 
 <hr>
 
 ## 🏗️ Subir projeto
-Cada ambiente está separado dentro das pastas `docker/development` e `docker/production`, dentro de cada uma há o arquivo docker-compose.yml que será utilizado para subir os serviços com base nos arquivos de configuração que estão dentro da mesma pasta.
+Cada ambiente está separado dentro das pastas `docker/development` e `docker/production`, dentro de cada uma há o arquivo `docker-compose.yml` que será utilizado para subir os serviços com base nos arquivos de configuração que estão dentro da mesma pasta.
 
 Para escolher o ambiente que vai ser usado ao subir os serviços basta alterar o arquivo de configuração que será utilizado ao rodar o comando `docker compose up`:
 ```bash
