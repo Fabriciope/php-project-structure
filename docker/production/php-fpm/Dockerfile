@@ -1,15 +1,3 @@
-FROM composer:2.8.9 AS composer
-
-WORKDIR /app
-
-COPY composer.json composer.json
-# NOTE: adicionar composer.lock no contianer caso já exista
-# COPY composer.lock composer.lock
-
-# TODO: estudar --no-scripts
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
-
-
 # TODO: usar alpine
 FROM php:8.4.6-fpm
 
@@ -27,14 +15,19 @@ RUN apt-get update && apt install -y \
         libonig-dev \
         libcurl4-openssl-dev \
     && docker-php-ext-install \
+        pdo_mysql \
         zip \
+        bcmath \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-WORKDIR /var/www
+WORKDIR /var/www/project-name
 COPY . .
 
-COPY --from=composer /app/vendor vendor
+COPY --from=composer:2.8.9 /usr/bin/composer /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
-RUN chown -R www-data:www-data /var/www
+RUN chown -R www-data:www-data /var/www/project-name
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress && php artisan optimize
 
 CMD ["php-fpm", "-F"]

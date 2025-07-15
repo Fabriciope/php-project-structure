@@ -18,22 +18,24 @@ RUN apt-get update && apt install -y \
         # libjpeg-dev \
         # libfreetype6-dev \
     && pecl install \
+        # ds \
         xdebug \
     && docker-php-ext-enable \
+        # ds \
         xdebug \
     # && docker-php-ext-configure gd \
     #     --with-freetype \
     #     --with-jpeg \
     && docker-php-ext-install \
-        # pdo \
-        # pdo_mysql \
+        pdo_mysql \
         zip \
+        bcmath \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 COPY --from=composer:2.8.9 /usr/bin/composer /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-WORKDIR /var/www
+WORKDIR /var/www/project-name
 COPY . .
 
 CMD ["/bin/bash", "-c", "composer install --prefer-dist --no-interaction && php-fpm"]

@@ -2,8 +2,8 @@ FROM nginx:1.28.0
 
 COPY docker/development/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY . /var/www
+COPY . /var/www/project-name
 
-WORKDIR /var/www/public
+WORKDIR /var/www/project-name/public
 
-RUN chown -R nginx:nginx /var/www/public && chown -R nginx:nginx /var/www/logs
+RUN chown -R nginx:nginx /var/www/project-name/public && chown -R nginx:nginx /var/www/project-name/storage/logs

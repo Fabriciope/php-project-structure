@@ -6,7 +6,7 @@ services:
       dockerfile: docker/development/nginx/Dockerfile
     restart: always
     volumes:
-      - ./../..:/var/www
+      - ./../..:/var/www/project-name
     networks:
       - project-name-network
     ports:
@@ -23,7 +23,7 @@ services:
     user: 1000:1000
     restart: always
     volumes:
-      - ./../..:/var/www
+      - ./../..:/var/www/project-name
     networks:
       - project-name-network
 

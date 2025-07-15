@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# TODO: deixar comando dinamico em relacao a qual ambiante var ser afetado
+docker compose --file docker/development/docker-compose.yml --env-file .env exec -it php-fpm php artisan "$@"
