@@ -27,7 +27,11 @@ COPY --from=composer:2.8.9 /usr/bin/composer /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN chown -R www-data:www-data /var/www/project-name
+# RUN chown -R www-data:www-data storage bootstrap/cache
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress && php artisan optimize
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress \
+    && php artisan key:generate \
+    && php artisan migrate \
+    && php artisan optimize
 
 CMD ["php-fpm", "-F"]
