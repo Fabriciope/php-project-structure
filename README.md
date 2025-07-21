@@ -23,6 +23,7 @@ Primeiro de tudo clone o projeto e troque para a branch correta.
 <br>
 
 ## 🛠️ Alterações a se fazer antes de iniciar
+<!-- TODO: continuar documentando como cp .env, key:generate e mais -->
 
 ### 🧾 Logs
 Criar arquivos de logs dentro da strutura de pastas do laravel:
