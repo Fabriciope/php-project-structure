@@ -1,4 +1,34 @@
 #!/bin/bash
 
-# TODO: deixar comando dinamico em relacao a qual ambiante var ser afetado
-docker compose --file docker/development/docker-compose.yml --env-file .env exec -it php-fpm php artisan "$@"
+# Lista os containers em execução
+running_container=$(docker ps --format '{{.Names}}' | grep -E 'php-fpm_')
+
+# Se não encontrar nenhum container correspondente, aborta
+if [ -z "$running_container" ]; then
+  echo "Nenhum container php-fpm_<ambiente> está em execução."
+  exit 1
+fi
+
+# Extrai o ambiente a partir do nome do container
+env_suffix="${running_container#php-fpm_}"
+
+# Mapeia o sufixo para o nome do diretório de ambiente
+case "$env_suffix" in
+  dev)
+    ENV="development"
+    ;;
+  prod)
+    ENV="production"
+    ;;
+  *)
+    echo "Ambiente '$env_suffix' não reconhecido."
+    exit 1
+    ;;
+esac
+
+# Executa o comando Artisan dentro do container correto
+docker compose \
+  --file docker/$ENV/docker-compose.yml \
+  --env-file .env \
+  exec -it php-fpm php artisan "$@"
+  # exec -it php-fpm_$env_suffix php artisan "$@"
