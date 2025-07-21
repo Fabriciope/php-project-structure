@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="340" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -56,11 +56,21 @@ Criar arquivos de logs dentro da strutura de pastas do laravel:
 
 <hr>
 
-<!--
-## 🏗️ php artisan
-TODO: documentar 
-<br><br>
--->
+## 🏗️ php artisan *
+Para facilitar seu dia a dia ao trabalhar com os comandos `php artisan` dentro do container que roda o php-fpm, não será necessário entrar no container toda vez que quiser rodar um comando artisan, para resolver isso foi criado um script chamado `phartisan` na raiz do repositório que funciona para ambos os ambientes tanto `production` quanto `development`, para utilizar o comando basta chama-lo diretamente no terminal na raiz do projeto e passar o restante do comando artisan como argumento.
+
+Primeiro dê permissão de execução para o script:
+```bash
+  chmod +x phartisan
+```
+
+Utilizando o script - Exemplo:
+```bash
+  ./phartisan about
+```
+Isto será o equivalente a ter executado o comando `php artisan about` dentro do container do php-fpm.
+
+<br>
 
 ## 🤝 Contribuindo
 
