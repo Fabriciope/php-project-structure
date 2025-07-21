@@ -11,7 +11,8 @@
 Estrutura nginx com php-fpm utilizando docker para projetos [Laravel](https://laravel.com/).
 <br><br>
 
-É basicamente a brach [php-fpm_with_nginx](https://github.com/Fabriciope/php-project-structure/tree/php-fpm_with_nginx) adaptada para rodar um projeto laravel
+É basicamente a brach [php-fpm_with_nginx](https://github.com/Fabriciope/php-project-structure/tree/php-fpm_with_nginx) adaptada para rodar um projeto laravel.
+> 💡 **Obs:** leia a documentação da branch [php-fpm_with_nginx](https://github.com/Fabriciope/php-project-structure/tree/php-fpm_with_nginx) para entender como a estrutura funciona e quais as diferenças do que se deve fazer em cada uma.
 
 Primeiro de tudo clone o projeto e troque para a branch correta.
 ```bash
