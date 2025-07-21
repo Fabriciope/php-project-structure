@@ -8,7 +8,7 @@
 </p>
 
 
-Estrutura nginx com php-fpm utilizando docker para projetos Laravel.
+Estrutura nginx com php-fpm utilizando docker para projetos [Laravel](https://laravel.com/).
 <br><br>
 
 É basicamente a brach [php-fpm_with_nginx](https://github.com/Fabriciope/php-project-structure/tree/php-fpm_with_nginx) adaptada para rodar um projeto laravel
@@ -23,7 +23,20 @@ Primeiro de tudo clone o projeto e troque para a branch correta.
 <br>
 
 ## 🛠️ Alterações a se fazer antes de iniciar
-<!-- TODO: continuar documentando como cp .env, key:generate e mais -->
+Criar arquivo `.env`:
+```bash
+  cp .env.example .env
+```
+
+Gerar nova chave da aplicação:
+```bash
+  ./phartisan key:generate
+```
+
+Rodar migrations:
+```bash
+  ./phartisan migrate
+```
 
 ### 🧾 Logs
 Criar arquivos de logs dentro da strutura de pastas do laravel:
@@ -57,6 +70,6 @@ Contribuições são sempre bem-vindas :)
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## Laravel license
+### Laravel license
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
